@@ -26,29 +26,33 @@ int main(){
     for(i=len;i>=0;i--){
         printf("%d",binary[i]);
     }
-    printf(".");
     // Calculate fractional part
     f_part = num-(int)num;
-    lim = 20;
-    for(i=0;i<lim;i++){
-        f_part = f_part*2;
-        bit = (int)f_part;
-        if(f_part == 1){
-            binary_f[i] = 1;
-            binary_f[i+1] = -1;
-            break;
+    if(f_part != 0){ // Calculate only when fractional part exists
+        printf(".");
+        lim = 20;
+        for(i=0;i<lim;i++){
+            f_part = f_part*2;
+            bit = (int)f_part;
+            if(f_part == 1){
+                binary_f[i] = 1;
+                binary_f[i+1] = -1;
+                break;
+            }
+            else{
+                binary_f[i] = bit;
+            }
+            f_part = f_part-bit;
         }
-        else{
-            binary_f[i] = bit;
+        binary_f[i+1] = -1;
+        i=0;
+        while(binary_f[i]!=-1){
+            printf("%d",binary_f[i]);
+            i++;
         }
-        f_part = f_part-bit;
+        printf("\n");
     }
-    binary_f[i+1] = -1;
-    i=0;
-    while(binary_f[i]!=-1){
-        printf("%d",binary_f[i]);
-        i++;
-    }
-    printf("\n");
+    else
+        printf("\n");
 
 }
